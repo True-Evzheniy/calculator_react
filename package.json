@@ -1,5 +1,5 @@
 {
-  "name": "react_course_01_07",
+  "name": "evgeny artamonov",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/romabelka/js_ru_01_07.git"
+    "url": "git@github.com:True-Evzheniy/calculator_react.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/romabelka/js_ru_01_07.git"
+    "url": "git@github.com:True-Evzheniy/calculator_react.git"
   },
-  "homepage": "https://github.com/romabelka/js_ru_01_07.git",
+  "homepage": "git@github.com:True-Evzheniy/calculator_react.git",
   "devDependencies": {
     "babel-core": "^6.5.2",
     "babel-loader": "^6.2.3",
