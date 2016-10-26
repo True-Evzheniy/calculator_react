@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ResultList from './ResultList'
-0
 
 class Calculator extends Component {
   state = {
@@ -23,7 +22,7 @@ class Calculator extends Component {
           <option value="remainder of a division">%</option>
           <option value="prime number">Highest prime number between A and B if available</option>
         </select>
-        <button onClick={this.calculate}>Start</button>
+        <button onClick={this.calculate} disabled={!this.state.firstOperand.length || !this.state.secondOperand.length}>Start</button>
         <ResultList results={this.state.results}/>
       </div>
     )
