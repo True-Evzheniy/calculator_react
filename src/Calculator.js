@@ -30,15 +30,25 @@ class Calculator extends Component {
   }
 
   handleChangeOperandValue = (ev) => {
+    let regexp = /\-?\d+(\.\d{0,})?/;
+    let value = ev.target.value
+
     if(ev.target.name == 'firstOperand') {
-      this.setState({
-        firstOperand: ev.target.value
-      })
+      console.log(regexp.test(value))
+      if(regexp.test(value)) {
+        this.setState({
+          firstOperand: value
+        })
+      }
+
     }
+
     if(ev.target.name == 'secondOperand') {
-      this.setState({
-        secondOperand: ev.target.value
-      })
+      if(regexp.test(value)) {
+        this.setState({
+          secondOperand: value
+        })
+      }
     }
   }
 
@@ -48,10 +58,12 @@ class Calculator extends Component {
     const firstOperand = +this.state.firstOperand
     const secondOperand = +this.state.secondOperand
     let result
+    let action
 
     switch(currentOperation) {
       case 'sum':
         result = this.summ(firstOperand, secondOperand)
+        action = `${firstOperand} + ${secondOperand}`
         break
       case 'divide':
         if(secondOperand === 0) {
@@ -66,17 +78,20 @@ class Calculator extends Component {
         } else {
           result = firstOperand % secondOperand
         }
-
+        action = `remainder of a division ${firstOperand} and ${secondOperand}`
         break
       case 'prime number':
         result = this.maxPrime(firstOperand, secondOperand)
+        action = `Highest prime number between ${firstOperand} and ${secondOperand} if available`
 
     }
 
-    const newResult = {date: new Date(), result: result, id: Date.now()}
+    const newResult = {date: new Date(), result: result, id: Date.now(), action: action}
 
     this.setState({
-      results: this.state.results.concat([newResult])
+      results: this.state.results.concat([newResult]),
+      firstOperand: '',
+      secondOperand: ''
     })
     console.log(newResult)
 
@@ -103,7 +118,7 @@ class Calculator extends Component {
   }
 
   summ = (a, b) => {
-    let multiplier;
+    let multiplier
     let first = a + ''
     let second = b + ''
     let arrFirst = first.split('.')
