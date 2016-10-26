@@ -1,0 +1,13 @@
+.container  {
+    margin:0 auto;
+    max-width: 1024px;
+    min-width: 960px;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+}
+table {
+    width: 100%;
+    text-align: left;
+}

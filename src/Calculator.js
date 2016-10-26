@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ResultList from './ResultList'
+import './style.css'
 
 class Calculator extends Component {
   state = {
@@ -8,32 +9,31 @@ class Calculator extends Component {
     firstOperand: ''
   }
 
-
   render() {
-
     return (
-      <div className="Calculator">
-        <h1>React Calculator</h1>
-        <input name="firstOperand" type="text" onChange={this.handleChangeOperandValue} value={this.state.firstOperand} />
-        <input name="secondOperand" type="text" onChange={this.handleChangeOperandValue} value={this.state.secondOperand}/>
-        <select ref="select" name="operations" id="operations">
-          <option value="sum">+</option>
-          <option value="divide">/</option>
-          <option value="remainder of a division">%</option>
-          <option value="prime number">Highest prime number between A and B if available</option>
-        </select>
-        <button onClick={this.calculate} disabled={!this.state.firstOperand.length || !this.state.secondOperand.length}>Start</button>
-        <ResultList results={this.state.results}/>
+      <div className="calculator">
+        <div className="container">
+          <h1>React Calculator</h1>
+          <input name="firstOperand" type="text" onChange={this.handleChangeOperandValue} value={this.state.firstOperand} />
+          <input name="secondOperand" type="text" onChange={this.handleChangeOperandValue} value={this.state.secondOperand}/>
+          <select ref="select" name="operations" id="operations">
+            <option value="sum">+</option>
+            <option value="divide">/</option>
+            <option value="remainder of a division">%</option>
+            <option value="prime number">Highest prime number between A and B if available</option>
+          </select>
+          <button onClick={this.calculate} disabled={!this.state.firstOperand || !this.state.secondOperand}>Start</button>
+          <ResultList results={this.state.results}/>
+        </div>
       </div>
     )
   }
 
   handleChangeOperandValue = (ev) => {
-    let regexp = /\-?\d+(\.\d{0,})?/;
+    let regexp = /\-?\d+(\.\d{0,})?/
     let value = ev.target.value
 
     if(ev.target.name == 'firstOperand') {
-      console.log(regexp.test(value))
       if(regexp.test(value)) {
         this.setState({
           firstOperand: value
@@ -51,7 +51,7 @@ class Calculator extends Component {
     }
   }
 
-  calculate = (ev) => {
+  calculate = () => {
     const select = this.refs.select
     const currentOperation = select.options[select.selectedIndex].value
     const firstOperand = +this.state.firstOperand
@@ -61,7 +61,7 @@ class Calculator extends Component {
 
     switch(currentOperation) {
       case 'sum':
-        result = this.summ(firstOperand, secondOperand)
+        result = this.sum(firstOperand, secondOperand)
         action = `${firstOperand} + ${secondOperand}`
         break
       case 'divide':
@@ -92,8 +92,6 @@ class Calculator extends Component {
       firstOperand: '',
       secondOperand: ''
     })
-    console.log(newResult)
-
   }
 
   maxPrime = (a, b) => {
@@ -107,7 +105,6 @@ class Calculator extends Component {
     if (a < 2) a = 2
     nextPrime:
       for (let i = b; i >= a; i--) {
-
         for (let j = 2; j < i; j++) {
           if (i % j == 0) continue nextPrime
         }
@@ -116,7 +113,7 @@ class Calculator extends Component {
     return 'no primes'
   }
 
-  summ = (a, b) => {
+  sum = (a, b) => {
     let multiplier
     let first = a + ''
     let second = b + ''

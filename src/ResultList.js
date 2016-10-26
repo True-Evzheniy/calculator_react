@@ -22,7 +22,6 @@ function ResultList(props) {
         </tr>
           {resultToRender}
         </tbody>
-
       </table>
     </div>
 
