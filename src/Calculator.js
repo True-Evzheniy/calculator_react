@@ -51,7 +51,7 @@ class Calculator extends Component {
 
     switch(currentOperation) {
       case 'sum':
-        result = firstOperand + secondOperand
+        result = this.summ(firstOperand, secondOperand)
         break
       case 'divide':
         if(secondOperand === 0) {
@@ -98,6 +98,20 @@ class Calculator extends Component {
         return i
       }
     return 'no primes'
+  }
+
+  summ = (a, b) => {
+    let multiplier;
+    let first = a + ''
+    let second = b + ''
+    let arrFirst = first.split('.')
+    let arrSecond = second.split('.')
+    let afterDotFirst = arrFirst[arrFirst.length -1] + ''
+    let afterDotSecond = arrSecond[arrSecond - 1] + ''
+    if(afterDotFirst.length > afterDotSecond.length) {
+      multiplier = Math.pow(10, afterDotFirst.length)
+    } else multiplier = Math.pow(10,  afterDotSecond.length )
+    return (a * multiplier + b * multiplier) / multiplier
   }
 }
 
