@@ -83,6 +83,8 @@ class Calculator extends Component {
   }
 
   maxPrime = (a, b) => {
+    a = Math.floor(a)
+    b = Math.floor(b)
     if(a > b){
       let c = a
       a = b
