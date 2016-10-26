@@ -3,7 +3,7 @@ import Result from './Result'
 
 function ResultList(props) {
   const {results} = props
-  let resultToRender = results.map( item => <Result key={item.date} date={item.date} result={item.result} />)
+  let resultToRender = results.map( item => <Result key={item.id} date={item.date} result={item.result} />)
   return (
     <div className="ResultList">
       <h2>results table</h2>
@@ -11,7 +11,7 @@ function ResultList(props) {
         <tbody>
         <tr>
           <th>
-            Date
+            Time
           </th>
           <th>
             Result
